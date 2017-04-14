@@ -16,11 +16,11 @@
         }
     ],
     "minimum-stability": "dev",
-    "autoload": {
-        "psr-4": { "Media\\": "src" }
+    "require": {
+        "php": "^5.5.9 || ^7.0"
     },
-    "autoload-dev": {
-        "psr-4": { "Media\\Tests\\": "tests" }
+    "autoload": {
+        "psr-4": { "MediaBundle\\": "" }
     },
     "extra": {
         "branch-alias": {
