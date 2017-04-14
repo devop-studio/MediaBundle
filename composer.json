@@ -8,6 +8,11 @@
             "name": "Zlatin Hristov",
             "email": "about@z-latko.info",
             "homepage": "https://z-latko.info"
+        },
+        {
+            "name": "DevX Ltd",
+            "email": "contact@devx.biz",
+            "homepage": "https://devx.biz"
         }
     ],
     "minimum-stability": "dev",
