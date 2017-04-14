@@ -1,0 +1,30 @@
+{
+    "name": "development-x/media-bundle",
+    "description": "Symfony 3 Media Bundle Manager",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zlatin Hristov",
+            "email": "about@z-latko.info",
+            "homepage": "https://z-latko.info"
+        },
+        {
+            "name": "DevX Ltd",
+            "email": "contact@devx.biz",
+            "homepage": "https://devx.biz"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": { "Media\\": "src" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Media\\Tests\\": "tests" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
