@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <mapped-superclass name="MediaBundle\Model\Media">
+        
+        <lifecycle-callbacks>
+<!--            <lifecycle-callback type="prePersist" method="doStuffOnPrePersist"/>
+            <lifecycle-callback type="prePersist" method="doOtherStuffOnPrePersistToo"/>
+            <lifecycle-callback type="postPersist" method="doStuffOnPostPersist"/>-->
+        </lifecycle-callbacks>
+        
+        <field name="format" column="format" type="string" />
+        <field name="filename" column="filename" type="string" />
+        <field name="metadata" column="metada" type="array" />
+        <field name="updatedAt" column="updated_at" type="datetime" nullable="true" />
+        <field name="createdAt" column="created_at" type="datetime" nullable="true" />
+        
+    </mapped-superclass>
+</doctrine-mapping>

@@ -1,0 +1,23 @@
+parameters:
+    media.type.class: 'MediaBundle\Form\Type\MediaType'
+    media.type.manager: 'MediaBundle\Manager\MediaManager'
+    media.data.transformer.class: 'MediaBundle\Form\DataTransformer\MediaDataTransformer'
+    
+services:
+    
+    media.form.type.media:
+        class: %media.type.class%
+        arguments: 
+            - "@media.data.transformer.service"
+        tags:
+            - { name: form.type }
+            
+    media.from.manager.service:
+        class: %media.type.manager%
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            
+    media.data.transformer.service:
+        class: %media.data.transformer.class%
+        arguments: 
+            - "@media.from.manager.service"

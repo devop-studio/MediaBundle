@@ -10,18 +10,22 @@
             "homepage": "https://z-latko.info"
         },
         {
-            "name": "DevX Ltd",
-            "email": "contact@devx.biz",
+            "name": "DevelopmentX Community",
             "homepage": "https://devx.biz"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
-        "php": "^5.5.9 || ^7.0"
+        "php": "^5.4 || ^7.0"
     },
     "autoload": {
-        "psr-4": { "MediaBundle\\": "" }
+        "psr-4": { 
+            "MediaBundle\\": "" 
+        },
+        "exclude-from-classmap": [
+            "Tests/"
+        ]
     },
+    "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"

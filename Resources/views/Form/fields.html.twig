@@ -1,0 +1,7 @@
+{%- block media_collection_widget -%}
+test
+    {% if prototype is defined %}
+        {%- set attr = attr|merge({'data-prototype': form_row(prototype) }) -%}
+    {% endif %}
+    {{- block('collection_widget') -}}
+{%- endblock media_collection_widget -%}
