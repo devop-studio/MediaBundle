@@ -1,12 +1,1 @@
 preset: symfony
-
-enabled:
-  - combine_consecutive_unsets
-  - long_array_syntax
-  - newline_after_open_tag
-  - no_php4_constructor
-  - no_useless_else
-  - strict
-  - strict_param
-  - php_unit_construct
-  - php_unit_strict
