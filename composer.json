@@ -15,17 +15,13 @@
         }
     ],
     "require": {
-        "php": "^5.4 || ^7.0"
+        "php": "^5.3 || ^7.0"
     },
     "autoload": {
-        "psr-4": { 
-            "MediaBundle\\": "src" 
-        }
+        "psr-4": { "MediaBundle\\": "src" }
     },
-    "autoload": {
-        "psr-4": {
-            "MediaBundle\\Tests\\": "tests"
-        }
+    "autoload-dev": {
+        "psr-4": { "MediaBundle\\Tests\\": "tests" }
     },
     "minimum-stability": "dev",
     "extra": {
