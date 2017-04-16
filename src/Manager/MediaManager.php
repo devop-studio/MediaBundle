@@ -6,7 +6,6 @@ use MediaBundle\Model\Media;
 use Doctrine\ORM\EntityManager;
 use MediaBundle\Manager\MediaManagerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class MediaManager implements MediaManagerInterface
 {
