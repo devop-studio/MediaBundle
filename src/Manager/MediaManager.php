@@ -13,16 +13,22 @@ class MediaManager implements MediaManagerInterface
 
     /**
      *
-     * @var ContainerInterface
-     */
-    private $container;
-
-    /**
-     *
      * @var EntityManager
      */
     private $entityManager;
 
+    /**
+     *
+     * @var string
+     */
+    private $kernelRootDir;
+    
+    /**
+     *
+     * @var string
+     */
+    private $uploadPath;
+    
     /**
      *
      * @var array
@@ -31,13 +37,15 @@ class MediaManager implements MediaManagerInterface
 
     /**
      * 
-     * @param ContainerInterface $container
      * @param EntityManager $entityManager
+     * @param string $kernelRootDir
+     * @param string $uploadPath
      */
-    public function __construct(ContainerInterface $container, EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager, $kernelRootDir, $uploadPath)
     {
-        $this->container = $container;
         $this->entityManager = $entityManager;
+        $this->kernelRootDir = $kernelRootDir;
+        $this->uploadPath = $uploadPath;
     }
 
     /**
@@ -97,12 +105,7 @@ class MediaManager implements MediaManagerInterface
             return null;
         }
 
-        $directory = implode(DIRECTORY_SEPARATOR, [
-            $this->container->getParameter('kernel.root_dir'),
-            '..' . DIRECTORY_SEPARATOR . 'web',
-            $this->container->getParameter('media.upload_path'),
-            $this->options['format']
-        ]);
+        $directory = implode(DIRECTORY_SEPARATOR, array($this->kernelRootDir, '..', 'web', $this->uploadPath, $this->options['format']));
 
         if (!is_dir($directory)) {
             mkdir($directory, 0755, true);
@@ -136,12 +139,7 @@ class MediaManager implements MediaManagerInterface
     public function delete(Media $media, $force = false)
     {
 
-        $directory = implode(DIRECTORY_SEPARATOR, [
-            $this->container->getParameter('kernel.root_dir'),
-            '..' . DIRECTORY_SEPARATOR . 'web',
-            $this->container->getParameter('media.upload_path'),
-            $this->options['format']
-        ]);
+        $directory = implode(DIRECTORY_SEPARATOR, array($this->kernelRootDir, '..', 'web', $this->uploadPath, $this->options['format']));
 
         if (file_exists($directory . DIRECTORY_SEPARATOR . $media->getFilename())) {
             unlink($directory . DIRECTORY_SEPARATOR . $media->getFilename());

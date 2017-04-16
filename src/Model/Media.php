@@ -94,7 +94,7 @@ abstract class Media
     /**
      * Set filename
      *
-     * @param filename $filename
+     * @param string $filename
      *
      * @return Media
      */

@@ -5,7 +5,6 @@ namespace MediaBundle\Form\DataTransformer;
 use MediaBundle\Model\Media;
 use MediaBundle\Manager\MediaManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class MediaDataTransformer implements DataTransformerInterface
