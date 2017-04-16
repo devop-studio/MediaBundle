@@ -3,24 +3,32 @@
 namespace MediaBundle\Twig;
 
 use MediaBundle\Model\Media;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class MediaExtension extends \Twig_Extension
 {
 
     /**
      *
-     * @var ContainerInterface
+     * @var RequestStack
      */
-    private $container;
+    private $requestStack;
+
+    /**
+     *
+     * @var string
+     */
+    private $uploadPath;
 
     /**
      * 
-     * @param ContainerInterface $container
+     * @param RequestStack $requestStack
+     * @param string $uploadPath
      */
-    public function __construct(ContainerInterface $container)
+    public function __construct(RequestStack $requestStack, $uploadPath)
     {
-        $this->container = $container;
+        $this->requestStack = $requestStack;
+        $this->uploadPath = $uploadPath;
     }
 
     /**
@@ -42,12 +50,7 @@ class MediaExtension extends \Twig_Extension
      */
     public function generateURL(Media $media)
     {
-
-        /* @var $requestStack \Symfony\Component\HttpFoundation\RequestStack */
-        $requestStack = $this->container->get('request_stack');
-
-        return sprintf('%s/%s/%s/%s', $requestStack->getCurrentRequest()->getBasePath(), $this->container->getParameter('media.upload_path'), $media->getFormat(), $media->getFilename()
-        );
+        return sprintf('%s/%s/%s/%s', $this->requestStack->getCurrentRequest()->getBasePath(), $this->uploadPath, $media->getFormat(), $media->getFilename());
     }
 
 }
