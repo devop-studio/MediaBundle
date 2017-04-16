@@ -6,6 +6,7 @@ use MediaBundle\Model\Media;
 use MediaBundle\Manager\MediaManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class MediaDataTransformer implements DataTransformerInterface
 {
@@ -15,7 +16,7 @@ class MediaDataTransformer implements DataTransformerInterface
      * @var MediaManagerInterface
      */
     private $manager;
-    
+
     /**
      * 
      * @param MediaManagerInterface $manager
@@ -24,15 +25,23 @@ class MediaDataTransformer implements DataTransformerInterface
     {
         $this->manager = $manager;
     }
-    
+
+    /**
+     * 
+     * @param Media|array|null $value
+     * 
+     * @return Media|null
+     * 
+     * @throws TransformationFailedException
+     */
     public function reverseTransform($value)
     {
-        if ($value instanceof UploadedFile) {
-            return $this->manager->upload($value)->save($value);
-        } else if ($value instanceof Media) {
+        if ($value instanceof Media) {
+            return $this->manager->save($value);
+        } else if (is_null($value)) {
             return $value;
         }
-        return null;
+        throw new TransformationFailedException();
     }
 
     /**

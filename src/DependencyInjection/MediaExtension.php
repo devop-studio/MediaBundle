@@ -18,11 +18,11 @@ class MediaExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
 
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        
-        $loader->load('services.yml');
-        
         $this->processConfiguration(new Configuration(), $configs);
+        $container->setParameter('media.upload_path', $configs[0]['upload_path']);
+        
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader->load('services.yml');
     }
 
 }

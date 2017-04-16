@@ -3,9 +3,8 @@
     <mapped-superclass name="MediaBundle\Model\Media">
         
         <lifecycle-callbacks>
-<!--            <lifecycle-callback type="prePersist" method="doStuffOnPrePersist"/>
-            <lifecycle-callback type="prePersist" method="doOtherStuffOnPrePersistToo"/>
-            <lifecycle-callback type="postPersist" method="doStuffOnPostPersist"/>-->
+            <lifecycle-callback type="preUpdate" method="preUpdate" />
+            <lifecycle-callback type="prePersist" method="prePersist" />
         </lifecycle-callbacks>
         
         <field name="format" column="format" type="string" />

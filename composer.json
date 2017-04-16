@@ -19,11 +19,13 @@
     },
     "autoload": {
         "psr-4": { 
-            "MediaBundle\\": "" 
-        },
-        "exclude-from-classmap": [
-            "Tests/"
-        ]
+            "MediaBundle\\": "src" 
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MediaBundle\\Tests\\": "tests"
+        }
     },
     "minimum-stability": "dev",
     "extra": {

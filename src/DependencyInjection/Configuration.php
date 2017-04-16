@@ -23,7 +23,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 # upload_path
                 ->scalarNode('upload_path')
-                ->defaultValue('../web/uploads')
+                ->defaultValue('uploads')
                 ->end()
                 # media_formats
                 ->arrayNode('media_formats')

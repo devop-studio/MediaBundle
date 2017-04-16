@@ -8,16 +8,25 @@ services:
     media.form.type.media:
         class: %media.type.class%
         arguments: 
+            - "@media.form.manager.service"
             - "@media.data.transformer.service"
         tags:
             - { name: form.type }
             
-    media.from.manager.service:
+    media.form.manager.service:
         class: %media.type.manager%
         arguments:
+            - "@service_container"
             - "@doctrine.orm.entity_manager"
             
     media.data.transformer.service:
         class: %media.data.transformer.class%
         arguments: 
-            - "@media.from.manager.service"
+            - "@media.form.manager.service"
+
+    media.twig_extension:
+        class: MediaBundle\Twig\MediaExtension
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: twig.extension }

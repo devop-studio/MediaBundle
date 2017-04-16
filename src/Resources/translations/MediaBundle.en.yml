@@ -1,0 +1,4 @@
+media:
+    form:
+        label:
+            remove: 'Remove this file'

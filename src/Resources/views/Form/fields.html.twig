@@ -1,0 +1,28 @@
+{%- block media_widget -%}
+{% if form.vars.value is not empty %}
+    <div class="row">
+        {% if form.vars.value.metadata.extension in ['jpg', 'jpeg', 'png', 'gif'] %}
+            <div class="col-xs-3">
+                <div class="img-thumbnail">
+                    <img src="{{ media(form.vars.value) }}" class="img-responsive" />
+                </div>
+            </div>
+            <div class="col-xs-9">
+            {% else %}
+                <div class="col-xs-12">
+                {% endif %}
+                <p class="form-control-static">
+                    <a href="{{ media(form.vars.value) }}" title="{{ form.vars.value.metadata.filename }}" target="_blank">
+                        {{ form.vars.value.metadata.filename }}
+                    </a>
+                </p>
+                {{ form_widget(form.children.file) }}
+                {% if form.children.fileRemove is defined %}
+                    {{ form_widget(form.children.fileRemove) }}
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        {{ form_widget(form.children.file) }}
+    {% endif %}
+    {%- endblock media_widget -%}
