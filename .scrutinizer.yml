@@ -6,7 +6,7 @@ build:
                 'date.timezone': 'Europe/Sofia'
                 
 before_commands:
-    - "composer install --prefer-source"
+    - "composer update --prefer-lowest"
     
 checks:
     php:
