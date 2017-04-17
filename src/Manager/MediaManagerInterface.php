@@ -9,19 +9,16 @@ interface MediaManagerInterface
 
     /**
      * 
+     * @param Media $media
      * @param array $options
      */
-    public function setOptions(array $options);
-
-    /**
-     * 
-     * @param Media $media
-     */
-    public function save(Media $media);
+    public function save(Media $media, array $options = []);
     
     /**
      * 
      * @param Media $media
+     * @param array $options
+     * @param boolean $force
      */
-    public function delete(Media $media);
+    public function delete(Media $media, array $options = [], $force = false);
 }

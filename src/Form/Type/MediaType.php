@@ -2,15 +2,16 @@
 
 namespace MediaBundle\Form\Type;
 
+use Doctrine\ORM\EntityManager;
+use MediaBundle\Manager\MediaManager;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
-use MediaBundle\Manager\MediaManagerInterface;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use MediaBundle\Form\DataTransformer\MediaDataTransformer;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class MediaType extends AbstractType
@@ -18,25 +19,25 @@ class MediaType extends AbstractType
 
     /**
      *
-     * @var MediaManagerInterface
+     * @var MediaManager
      */
     private $manager;
-
+    
     /**
      *
-     * @var DataTransformerInterface
+     * @var EntityManager
      */
-    private $dataTransformer;
+    private $entityManager;
 
     /**
      * 
-     * @param MediaManagerInterface $manager
-     * @param DataTransformerInterface $dataTransformer
+     * @param MediaManager $manager
+     * @param EntityManager $entityManager
      */
-    public function __construct(MediaManagerInterface $manager, DataTransformerInterface $dataTransformer)
+    public function __construct(MediaManager $manager, EntityManager $entityManager)
     {
         $this->manager = $manager;
-        $this->dataTransformer = $dataTransformer;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -56,9 +57,7 @@ class MediaType extends AbstractType
                         'data-show-preview' => 'false'
         ]]);
 
-        $this->manager->setOptions($options);
-
-        $builder->addModelTransformer($this->dataTransformer);
+        $builder->addModelTransformer(new MediaDataTransformer($this->manager, $this->entityManager, $options));
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
             if ($event->getData()) {
@@ -70,9 +69,9 @@ class MediaType extends AbstractType
             }
         });
 
-        $builder->addEventListener(FormEvents::SUBMIT, function(FormEvent $event) {
+        $builder->addEventListener(FormEvents::SUBMIT, function(FormEvent $event) use ($options) {
             if ($event->getForm()->has('fileRemove') && $event->getForm()->get('fileRemove')->getData()) {
-                $this->manager->delete($event->getData());
+                $this->manager->delete($event->getData(), $options);
                 $event->setData(null);
             }
         });

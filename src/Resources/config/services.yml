@@ -9,15 +9,16 @@ services:
         class: %media.type.class%
         arguments: 
             - "@media.form.manager.service"
-            - "@media.data.transformer.service"
+            - "@doctrine.orm.entity_manager"
         tags:
             - { name: form.type }
             
     media.form.manager.service:
         class: %media.type.manager%
         arguments:
-            - "@request_stack"
             - "@doctrine.orm.entity_manager"
+            - "%kernel.root_dir%"
+            - "%media.upload_path%"
             
     media.data.transformer.service:
         class: %media.data.transformer.class%
@@ -27,8 +28,7 @@ services:
     media.twig_extension:
         class: MediaBundle\Twig\MediaExtension
         arguments:
-            - '@doctrine.orm.entity_manager'
-            - %kernel.root_dir%
-            - %media.upload_path%
+            - '@request_stack'
+            - '%media.upload_path%'
         tags:
             - { name: twig.extension }

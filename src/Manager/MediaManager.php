@@ -29,12 +29,6 @@ class MediaManager implements MediaManagerInterface
     private $uploadPath;
     
     /**
-     *
-     * @var array
-     */
-    private $options = [];
-
-    /**
      * 
      * @param EntityManager $entityManager
      * @param string $kernelRootDir
@@ -45,15 +39,6 @@ class MediaManager implements MediaManagerInterface
         $this->entityManager = $entityManager;
         $this->kernelRootDir = $kernelRootDir;
         $this->uploadPath = $uploadPath;
-    }
-
-    /**
-     * 
-     * @param array $options
-     */
-    public function setOptions(array $options)
-    {
-        $this->options = $options;
     }
 
     /**
@@ -94,17 +79,18 @@ class MediaManager implements MediaManagerInterface
     /**
      * 
      * @param Media $media
+     * @param array $options
      * 
-     * @return $this
+     * @return Media
      */
-    public function save(Media $media)
+    public function save(Media $media, array $options = [])
     {
 
         if (!$media->getFile() instanceof UploadedFile) {
-            return null;
+            return $media;
         }
 
-        $directory = implode(DIRECTORY_SEPARATOR, array($this->kernelRootDir, '..', 'web', $this->uploadPath, $this->options['format']));
+        $directory = implode(DIRECTORY_SEPARATOR, array($this->kernelRootDir, '..', 'web', $this->uploadPath, $options['format']));
 
         if (!is_dir($directory)) {
             mkdir($directory, 0755, true);
@@ -115,18 +101,18 @@ class MediaManager implements MediaManagerInterface
         $media->getFile()->move($directory, $filename);
 
         if ($media->getId()) {
-            if (!$this->options['keep_existing']) {
+            if (!$options['keep_existing']) {
                 $this->delete($media);
                 $entity = $media;
             } else {
-                $entity = new $this->options['data_class'];
+                $entity = new $options['data_class'];
             }
         } else {
-            $entity = new $this->options['data_class'];
+            $entity = new $options['data_class'];
         }
 
         $entity->setFilename($filename);
-        $entity->setFormat($this->options['format']);
+        $entity->setFormat($options['format']);
         $entity->setMetadata($this->updateMetaData($media->getFile()));
 
         $this->entityManager->persist($entity);
@@ -135,10 +121,16 @@ class MediaManager implements MediaManagerInterface
         return $entity;
     }
 
-    public function delete(Media $media, $force = false)
+    /**
+     * 
+     * @param Media $media
+     * @param array $options
+     * @param boolean $force
+     */
+    public function delete(Media $media, array $options = [], $force = false)
     {
 
-        $directory = implode(DIRECTORY_SEPARATOR, array($this->kernelRootDir, '..', 'web', $this->uploadPath, $this->options['format']));
+        $directory = implode(DIRECTORY_SEPARATOR, array($this->kernelRootDir, '..', 'web', $this->uploadPath, $options['format']));
 
         if (file_exists($directory . DIRECTORY_SEPARATOR . $media->getFilename())) {
             unlink($directory . DIRECTORY_SEPARATOR . $media->getFilename());
