@@ -16,7 +16,7 @@ services:
     media.form.manager.service:
         class: %media.type.manager%
         arguments:
-            - "@service_container"
+            - "@request_stack"
             - "@doctrine.orm.entity_manager"
             
     media.data.transformer.service:
@@ -27,6 +27,8 @@ services:
     media.twig_extension:
         class: MediaBundle\Twig\MediaExtension
         arguments:
-            - '@service_container'
+            - '@doctrine.orm.entity_manager'
+            - %kernel.root_dir%
+            - %media.upload_path%
         tags:
             - { name: twig.extension }
