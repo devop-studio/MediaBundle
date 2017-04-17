@@ -51,6 +51,15 @@ abstract class Media
 
     /**
      * 
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getFilename();
+    }
+    
+    /**
+     * 
      * @return int
      */
     public function getId()

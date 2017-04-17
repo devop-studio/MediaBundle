@@ -26,3 +26,14 @@
         {{ form_widget(form.children.file) }}
     {% endif %}
     {%- endblock media_widget -%}
+
+    {% block media_collection_widget %}
+        {% spaceless %}
+            {{ form_widget(form) }}
+        {% endspaceless %}
+        <div class="clearfix">
+            <a href="javascript: void(0);" class="btn btn-primary add-collection-widget pull-right" data-target="#{{ form.vars.id }}">
+                {{ "media.form.button.new"|trans({}, 'MediaBundle') }}
+            </a>
+        </div>
+    {% endblock media_collection_widget %}
