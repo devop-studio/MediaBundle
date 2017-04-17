@@ -1,6 +1,4 @@
-preset: symfony
-
-enabled:
+preset: recommended
 
 disabled:
   - no_empty_comment
