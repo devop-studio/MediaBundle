@@ -1,1 +1,7 @@
 preset: symfony
+
+enabled:
+
+disabled:
+  - no_empty_comment
+  - no_extra_consecutive_blank_lines
