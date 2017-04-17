@@ -13,7 +13,7 @@ matrix:
     - php: hhvm
 
 before_script:
-  - composer install --no-interaction --prefer-dist
+  - composer update --no-interaction --prefer-lowest
 
 script:
   - phpunit --coverage-text --coverage-clover=coverage.clover
