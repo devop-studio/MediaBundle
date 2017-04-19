@@ -22,7 +22,7 @@ class MediaType extends AbstractType
      * @var MediaManager
      */
     private $manager;
-    
+
     /**
      *
      * @var EntityManager

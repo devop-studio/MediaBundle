@@ -29,11 +29,28 @@
 
     {% block media_collection_widget %}
         {% spaceless %}
-            {{ form_widget(form) }}
-        {% endspaceless %}
-        <div class="clearfix">
-            <a href="javascript: void(0);" class="btn btn-primary add-collection-widget pull-right" data-target="#{{ form.vars.id }}">
-                {{ "media.form.button.new"|trans({}, 'MediaBundle') }}
-            </a>
-        </div>
-    {% endblock media_collection_widget %}
+            {% if prototype is defined %}
+                {%- set attr = attr|merge({'data-prototype': form_row(prototype) }) -%}
+            {% endif %}
+            <div {{ block('widget_container_attributes') }}>
+                {%- if form.parent is empty -%}
+                {{ form_errors(form) }}
+                {%- endif -%}
+                {% for child in form.children %}
+                    <div class="form-group{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+                        <div class="col-xs-12">
+                            {% for item in child %}
+                                {{- form_widget(item) -}}
+                                {{- form_errors(item) -}}
+                            {% endfor %}
+                        </div>
+                        {##}</div>
+                    {% endfor %}
+                </div>
+                {% endspaceless %}
+                <div class="clearfix">
+                    <a href="javascript: void(0);" class="btn btn-primary add-collection-widget pull-right" data-target="#{{ form.vars.id}}">
+                        {{ "media.form.button.new" | trans({}, 'MediaBundle')}}
+                    </a>
+                </div>
+                {% endblock media_collection_widget %}

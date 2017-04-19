@@ -87,7 +87,7 @@ class MediaManager implements MediaManagerInterface
     {
 
         if (!$media->getFile() instanceof UploadedFile) {
-            return $media;
+            return $media->getId() ? $media : null;
         }
 
         $directory = implode(DIRECTORY_SEPARATOR, array($this->kernelRootDir, '..', 'web', $this->uploadPath, $options['format']));

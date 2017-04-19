@@ -2,3 +2,5 @@ media:
     form:
         label:
             remove: 'Изтрий този файл'
+        button:
+            new: 'Добави нов запис'
