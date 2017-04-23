@@ -56,8 +56,11 @@ Plugin installation could be found [here](http://plugins.krajee.com/file-input#i
 <script type="text/javascript" src="{{ asset('library/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
 ```
 
+# More configuration
+- [Using CollectionType for hold files](doc/collection.md)
+
 # Contributing
-However, if you are interested and want to send a bug fix, new functionality or better realization, just send a pull request :) 
+However, if you are interested and want to send a bug fix, new functionality or better realization, just send a pull request :)
 
 # License
 This bundle is under the MIT license. See the complete license [in the bundle](LICENSE)
