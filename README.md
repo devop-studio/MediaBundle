@@ -1,6 +1,12 @@
 MediaBundle
 =============
-The **MediaBundle** is media library for managing entity files.
+The **MediaBundle** is media library for managing entity files. Use it on your risk.
+
+| SensioLabs Insight | Travis CI | Scrutinizer CI|
+| ------------------------|-------------|-----------------|
+|[![SensioLabsInsight](https://insight.sensiolabs.com/projects/b7db0a5f-09a4-4c10-a01b-98dcbb37aa36/mini.png)](https://insight.sensiolabs.com/projects/b7db0a5f-09a4-4c10-a01b-98dcbb37aa36)|[![Build Status](https://travis-ci.org/development-x/MediaServiceProvider.svg?branch=master)](https://travis-ci.org/development-x/MediaServiceProvider)|[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/development-x/MediaBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/development-x/MediaBundle/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/development-x/MediaBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/development-x/MediaBundle/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/development-x/MediaBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/development-x/MediaBundle/build-status/master)
+
+[![Latest Stable Version](https://poser.pugx.org/development-x/media-bundle/v/stable)](https://packagist.org/packages/development-x/media-bundle) [![Total Downloads](https://poser.pugx.org/development-x/media-bundle/downloads)](https://packagist.org/packages/development-x/media-bundle) [![Latest Unstable Version](https://poser.pugx.org/development-x/media-bundle/v/unstable)](https://packagist.org/packages/development-x/media-bundle) [![License](https://poser.pugx.org/development-x/media-bundle/license)](https://packagist.org/packages/development-x/media-bundle) [![composer.lock](https://poser.pugx.org/development-x/media-bundle/composerlock)](https://packagist.org/packages/development-x/media-bundle)
 
 # Features
 - save uploaded file in to database via DoctrineORM

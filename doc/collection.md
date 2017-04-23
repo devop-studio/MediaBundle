@@ -60,7 +60,7 @@ class Form extends AbstractType
         'allow_add' => true,
         'allow_delete' => true,
         'delete_empty' => true,
-        'entry_type' => ArticleHasImagesType::class
+        'entry_type' => EntityHasImagesType::class
     ])
     ...
 }
